@@ -5,7 +5,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Tienda online - Login</title>
+        <title>Login</title>
         <script src="scripts.js" type="text/javascript"></script>
     </head>
     <body>

@@ -1,13 +1,13 @@
 <?php
 include_once 'Modelo/Producto.php';
 include_once 'Modelo/Usuario.php';
-include_once 'Control/CProducto.php';
+
 session_start();
 
 $usuario = new Usuario();
 $usuario->setUsername("El usuario 1");
 
-$cProducto = new CProducto();
+//$cProducto = new CProducto();
 
 // sesion con usuario identificado
 //$_SESSION['usuario'] = serialize($usuario);
@@ -48,8 +48,9 @@ Este es el catálogo
     </head>
     <body>
         <?php
-            $cProducto->consultarTodos();
-        ?>
+              //$cProducto = new CProducto();
+              //$cProducto->consultarTodos();
+        ?><!--
         <?php/*
         if(isset($_SESSION['usuario'])){
             */?>
@@ -61,7 +62,7 @@ Este es el catálogo
             <h1>Esto lo ve un usuario anónimo</h1>
             <?php/*
         }*/
-        ?>
+        ?>-->
         
         <button onclick='goTo("Ingreso.php")'>Iniciar sesión</button>
     </body>

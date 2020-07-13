@@ -5,10 +5,10 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>ADMIN - Tienda online</title>
+        <title></title>
     </head>
     <body>
-        <form action='control/CProducto.php' method="post">
+        <form action='Control/CProducto.php' method="POST">
             <input type='number' name='idProducto' placeholder="ID"/>
             <input type='text' name='nombreProducto' placeholder="nombre del producto"/>
             <input type='number' name='precioProducto' placeholder="precio del producto"/>

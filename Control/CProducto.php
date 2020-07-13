@@ -1,8 +1,22 @@
 <?php
+session_start();
+$varsession = $_SESSION['usuario'];
 
 include 'Connection.php';
-include '../modelo/Producto.php';
+include '../Modelo/Producto.php';
+if($varsession == "Admin"){
+    $producto = new Producto();
+    $producto->setId($_POST['idProducto']);
+    $producto->setNombre($_POST['nombreProducto']);
+    $producto->setPrecio($_POST['precioProducto']);
+    $producto->setCantidad($_POST['cantidadProducto']);
+    
+    $cProducto->insertar($producto);
 
+    $cProducto = new CProducto();
+
+    header("Location: ../Admin.php");
+}
 class CProducto extends Connection{
     
     function __construct() {
@@ -29,7 +43,7 @@ class CProducto extends Connection{
        return null;
     }
 
-    public function consultarTodos() {
+    public function consultarTodos(){/*
         $sentencia = $this->conn->prepare("SELECT * FROM producto;");
         
         mysqli_stmt_execute($sentencia);
@@ -44,7 +58,7 @@ class CProducto extends Connection{
             <td>Cantidad Producto</td>
         </tr>';
         
-       // fetch values
+       
         while (mysqli_stmt_fetch($sentencia)) {
             echo "     <tr>
             <td>{$col0}</td>
@@ -53,16 +67,9 @@ class CProducto extends Connection{
             <td>{$col3}</td>
         </tr> ";
         }
-        // close the table
-    echo '</table>';
-            /*
-        $s = array('data' => array());
-        while ($reg=mysqli_fetch_array($sentencia))
-        {
-            array_push($s['data'],
-            array($reg['id'],$reg['nombreProducto'],$reg['precioProducto'],$reg['cantidadProducto']));
-        }*/
         
+        echo '</table>';*/
+        return null;
     }
     
     public function eliminar($id) {
@@ -73,14 +80,3 @@ class CProducto extends Connection{
         return false;
     }
 }
-/*
-$producto = new Producto();
-$producto->setId($_POST['idProducto']);
-$producto->setNombre($_POST['nombreProducto']);
-$producto->setPrecio($_POST['precioProducto']);
-$producto->setCantidad($_POST['cantidadProducto']);
-
-$cProducto->insertar($producto);
-$cProducto = new CProducto();
-
-header("Location: ../Admin.php");*/

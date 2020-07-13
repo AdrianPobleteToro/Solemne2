@@ -1,6 +1,5 @@
 <?php
 
-
 class Producto {
     private $id;
     private $nombre;

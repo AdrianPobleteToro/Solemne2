@@ -1,11 +1,13 @@
 <?php
-include_once 'modelo/Producto.php';
-include_once 'modelo/Usuario.php';
+include_once 'Modelo/Producto.php';
+include_once 'Modelo/Usuario.php';
+include_once 'Control/CProducto.php';
 session_start();
 
 $usuario = new Usuario();
 $usuario->setUsername("El usuario 1");
 
+$cProducto = new CProducto();
 
 // sesion con usuario identificado
 //$_SESSION['usuario'] = serialize($usuario);
@@ -27,7 +29,6 @@ array_push($carrito, $producto2);
 $_SESSION['carrito'] = serialize($carrito); // asi se guarda
 
 $carrito = unserialize($_SESSION['carrito']); // asi se recupera
-$catalogo = unserialize($_SESSION['catalogo']);
 
 // Listar los productos del carrito
 echo("Los productos en el carrito son:");
@@ -47,10 +48,7 @@ Este es el catálogo
     </head>
     <body>
         <?php
-            foreach($catalogo as $row)
-            {
-                echo($row);
-            }
+            $cProducto->consultarTodos();
         ?>
         <?php/*
         if(isset($_SESSION['usuario'])){

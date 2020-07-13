@@ -32,11 +32,36 @@ class CProducto extends Connection{
     public function consultarTodos() {
         $sentencia = $this->conn->prepare("SELECT * FROM producto;");
         
-        while($row = $sentencia->fetch_array())
-        {
-            $catalogo[] = $row;
+        mysqli_stmt_execute($sentencia);
+        
+        mysqli_stmt_bind_result($sentencia,$col0,$col1,$col2,$col3);
+        
+        echo '<table>
+        <tr>
+            <td>Id</td>
+            <td>Nombre Producto</td>
+            <td>Precio Producto</td>
+            <td>Cantidad Producto</td>
+        </tr>';
+        
+       // fetch values
+        while (mysqli_stmt_fetch($sentencia)) {
+            echo "     <tr>
+            <td>{$col0}</td>
+            <td>{$col1}</td>
+            <td>{$col2}</td>
+            <td>{$col3}</td>
+        </tr> ";
         }
-        $_SESSION['catalogo'] = serialize($catalogo); // asi se guarda
+        // close the table
+    echo '</table>';
+            /*
+        $s = array('data' => array());
+        while ($reg=mysqli_fetch_array($sentencia))
+        {
+            array_push($s['data'],
+            array($reg['id'],$reg['nombreProducto'],$reg['precioProducto'],$reg['cantidadProducto']));
+        }*/
         
     }
     
@@ -57,4 +82,5 @@ $producto->setCantidad($_POST['cantidadProducto']);
 
 $cProducto->insertar($producto);
 $cProducto = new CProducto();
+
 header("Location: ../Admin.php");*/
